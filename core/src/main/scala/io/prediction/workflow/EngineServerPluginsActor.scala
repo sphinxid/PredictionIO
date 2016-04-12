@@ -31,10 +31,10 @@ class PluginsActor(engineVariant: String) extends Actor {
       pluginContext.outputSniffers.values.foreach(_.process(ei, q, p, pluginContext))
     case h: PluginsActor.HandleREST =>
       try {
-        sender() ! pluginContext.outputSniffers(h.pluginName).handleREST(h.pluginArgs)
+        sender ! pluginContext.outputSniffers(h.pluginName).handleREST(h.pluginArgs)
       } catch {
         case e: Exception =>
-          sender() ! s"""{"message":"${e.getMessage}"}"""
+          sender ! s"""{"message":"${e.getMessage}"}"""
       }
     case _ =>
       log.error("Unknown message sent to the Engine Server output sniffer plugin host.")
