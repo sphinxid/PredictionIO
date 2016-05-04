@@ -64,7 +64,7 @@ class StatsActor extends Actor {
   def receive: Actor.Receive = {
     case Bookkeeping(appId, statusCode, event) =>
       bookkeeping(appId, statusCode, event)
-    case GetStats(appId) => sender() ! Map(
+    case GetStats(appId) => sender ! Map(
       "time" -> DateTime.now,
       "currentHour" -> hourlyStats.get(appId),
       "prevHour" -> prevHourlyStats.get(appId),

@@ -15,6 +15,9 @@
 
 package org.apache.hadoop.hbase.mapreduce
 
+import org.apache.hadoop.hbase.protobuf.ProtobufUtil
+import org.apache.hadoop.hbase.util.Base64;
+
 /* Pretends to be hbase.mapreduce package in order to expose its
  * Package-accessible only static function convertScanToString()
  */
@@ -23,6 +26,7 @@ import org.apache.hadoop.hbase.client.Scan
 
 object PIOHBaseUtil {
   def convertScanToString(scan: Scan): String = {
-    TableMapReduceUtil.convertScanToString(scan)
+    // TableMapReduceUtil.convertScanToString(scan)
+    Base64.encodeBytes(ProtobufUtil.toScan(scan).toByteArray())
   }
 }

@@ -29,13 +29,13 @@ class PluginsActor() extends Actor {
       pluginContext.inputSniffers.values.foreach(_.process(e, pluginContext))
     case h: PluginsActor.HandleREST =>
       try {
-        sender() ! pluginContext.inputSniffers(h.pluginName).handleREST(
+        sender ! pluginContext.inputSniffers(h.pluginName).handleREST(
           h.appId,
           h.channelId,
           h.pluginArgs)
       } catch {
         case e: Exception =>
-          sender() ! s"""{"message":"${e.getMessage}"}"""
+          sender ! s"""{"message":"${e.getMessage}"}"""
       }
     case _ =>
       log.error("Unknown message sent to Event Server input sniffer plugin host.")

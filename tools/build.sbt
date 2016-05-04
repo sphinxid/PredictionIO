@@ -20,8 +20,10 @@ name := "tools"
 
 libraryDependencies ++= Seq(
   "com.github.scopt"       %% "scopt"          % "3.2.0",
-  "io.spray"               %% "spray-can"      % "1.3.3",
-  "io.spray"               %% "spray-routing"  % "1.3.3",
+  //"io.spray"               %% "spray-can"      % "1.3.3",
+  //"io.spray"               %% "spray-routing"  % "1.3.3",
+  "io.spray"               % "spray-can"      % "1.2.3",
+  "io.spray"               % "spray-routing"  % "1.2.3",
   "me.lessis"              % "semverfi_2.10"  % "0.1.3",
   "org.apache.hadoop"       % "hadoop-common"  % "2.7.1",
   "org.apache.hadoop"       % "hadoop-hdfs"    % "2.7.1",
@@ -31,10 +33,12 @@ libraryDependencies ++= Seq(
   "org.json4s"             %% "json4s-native"  % json4sVersion.value,
   "org.json4s"             %% "json4s-ext"     % json4sVersion.value,
   "org.scalaj"             %% "scalaj-http"    % "1.1.0",
-  "org.spark-project.akka" %% "akka-actor"     % "2.3.4-spark",
-  "io.spray" %% "spray-testkit" % "1.3.3" % "test",
+  //"org.spark-project.akka" %% "akka-actor"     % "2.3.4-spark",
+  "com.typesafe.akka" %% "akka-actor"     % "2.2.3",
+  "io.spray" % "spray-testkit" % "1.2.3" % "test",
   "org.specs2" %% "specs2" % "2.3.13" % "test",
-  "org.spark-project.akka" %% "akka-slf4j"     % "2.3.4-spark")
+  //"org.spark-project.akka" %% "akka-slf4j"     % "2.3.4-spark")
+  "com.typesafe.akka" %% "akka-slf4j"     % "2.2.3")
 
 excludedJars in assembly <<= (fullClasspath in assembly) map { cp =>
   cp filter { _.data.getName match {
